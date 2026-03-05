@@ -1,0 +1,289 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ==================== USUÁRIOS ====================
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  emailVerified DateTime?
+  phone         String?
+  cpf           String?   @unique
+  avatarUrl     String?
+  passwordHash  String
+  role          String    @default("user") // user | admin | moderator
+  verified      Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  raffles       Raffle[]
+  tickets       Ticket[]
+  reviews       Review[]
+  transactions  Transaction[]
+
+  @@index([email])
+  @@index([cpf])
+}
+
+// ==================== RIFAS ====================
+
+model Raffle {
+  id              String    @id @default(cuid())
+  slug            String    @unique
+  title           String
+  description     String
+  shortDescription String?
+  rules           String?
+
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+
+  // Prêmio
+  prizeTitle      String
+  prizeDescription String?
+  prizeValue      Float
+  prizeImageUrl   String?
+
+  // Configuração
+  ticketPrice     Float
+  totalTickets    Int
+  minTickets      Int       @default(1)
+  maxTicketsPerUser Int?
+
+  // Status
+  status          String    @default("draft") // draft | active | paused | completed | cancelled | drawn
+  featured        Boolean   @default(false)
+
+  // Datas
+  startDate       DateTime?
+  endDate         DateTime?
+  drawDate        DateTime?
+  drawnAt         DateTime?
+
+  // Sorteio
+  winnerTicket    Int?
+  drawHash        String?   // Hash blockchain do sorteio
+  drawSeed        String?   // Seed usado no sorteio
+
+  // Categoria
+  categoryId      String?
+  category        Category? @relation(fields: [categoryId], references: [id])
+
+  // Personalização
+  instagramUrl    String?
+  whatsappUrl     String?
+  facebookUrl     String?
+  youtubeUrl      String?
+  tiktokUrl       String?
+  logoUrl         String?
+  bannerUrl       String?
+
+  // Ranking
+  rankingEnabled  Boolean   @default(false)
+
+  // Criador
+  creatorId       String
+  creator         User      @relation(fields: [creatorId], references: [id])
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  tickets         Ticket[]
+  images          RaffleImage[]
+  reviews         Review[]
+  prizeTickets    PrizeTicket[]
+  promotions      Promotion[]
+  rankingPrizes   RankingPrize[]
+
+  @@index([slug])
+  @@index([status])
+  @@index([categoryId])
+  @@index([creatorId])
+  @@index([featured, status])
+}
+
+model RaffleImage {
+  id        String  @id @default(cuid())
+  url       String
+  alt       String?
+  order     Int     @default(0)
+  raffleId  String
+  raffle    Raffle  @relation(fields: [raffleId], references: [id], onDelete: Cascade)
+
+  @@index([raffleId])
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  iconName    String?
+  order       Int      @default(0)
+
+  raffles     Raffle[]
+
+  @@index([slug])
+}
+
+// ==================== BILHETES ====================
+
+model Ticket {
+  id        String   @id @default(cuid())
+  number    Int
+  status    String   @default("available") // available | reserved | paid | won
+
+  raffleId  String
+  raffle    Raffle   @relation(fields: [raffleId], references: [id], onDelete: Cascade)
+
+  buyerId   String?
+  buyer     User?    @relation(fields: [buyerId], references: [id])
+
+  transactionId String?
+  transaction   Transaction? @relation(fields: [transactionId], references: [id])
+
+  reservedAt DateTime?
+  paidAt     DateTime?
+  createdAt  DateTime  @default(now())
+
+  @@unique([raffleId, number])
+  @@index([raffleId, status])
+  @@index([buyerId])
+}
+
+// ==================== PAGAMENTOS ====================
+
+model Transaction {
+  id              String   @id @default(cuid())
+  externalId      String?  @unique // ID do gateway (Mercado Pago, etc)
+
+  amount          Float
+  fee             Float    @default(0)
+  netAmount       Float    @default(0)
+
+  method          String   @default("pix") // pix | credit_card
+  status          String   @default("pending") // pending | approved | rejected | refunded | expired
+
+  pixQrCode       String?
+  pixQrCodeBase64 String?
+  pixCopyPaste    String?
+  expiresAt       DateTime?
+
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+
+  tickets         Ticket[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([externalId])
+  @@index([userId])
+  @@index([status])
+}
+
+// ==================== AVALIAÇÕES ====================
+
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int      // 1-5
+  comment   String?
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+
+  raffleId  String
+  raffle    Raffle   @relation(fields: [raffleId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, raffleId])
+  @@index([raffleId])
+}
+
+// ==================== BLOG (SEO) ====================
+
+model BlogPost {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  title           String
+  excerpt         String?
+  content         String
+  coverImageUrl   String?
+
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+
+  published       Boolean  @default(false)
+  publishedAt     DateTime?
+
+  author          String   @default("Equipe RifaFlow")
+  tags            String?  // JSON array de tags
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([slug])
+  @@index([published, publishedAt])
+}
+
+// ==================== BILHETES PREMIADOS ====================
+
+model PrizeTicket {
+  id          String  @id @default(cuid())
+  raffleId    String
+  number      Int
+  prize       String
+  prizeValue  Float   @default(0)
+  claimed     Boolean @default(false)
+  raffle      Raffle  @relation(fields: [raffleId], references: [id], onDelete: Cascade)
+
+  @@unique([raffleId, number])
+  @@index([raffleId])
+}
+
+// ==================== PROMOÇÕES ====================
+
+model Promotion {
+  id            String  @id @default(cuid())
+  raffleId      String
+  buyQuantity   Int
+  bonusQuantity Int
+  label         String?
+  active        Boolean @default(true)
+  raffle        Raffle  @relation(fields: [raffleId], references: [id], onDelete: Cascade)
+
+  @@index([raffleId])
+}
+
+// ==================== RANKING DE COMPRADORES ====================
+
+model RankingPrize {
+  id          String  @id @default(cuid())
+  raffleId    String
+  position    Int
+  prize       String
+  prizeValue  Float   @default(0)
+  raffle      Raffle  @relation(fields: [raffleId], references: [id], onDelete: Cascade)
+
+  @@index([raffleId])
+}
+
+// ==================== CONFIGURAÇÕES DO SITE ====================
+
+model SiteConfig {
+  id    String @id @default("main")
+  key   String @unique
+  value String
+
+  @@index([key])
+}

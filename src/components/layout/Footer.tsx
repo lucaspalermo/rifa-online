@@ -28,9 +28,9 @@ export function Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-neon/50 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
           {/* Brand */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-neon/10 flex items-center justify-center border border-neon/30">
                 <Zap className="w-4 h-4 text-neon" />

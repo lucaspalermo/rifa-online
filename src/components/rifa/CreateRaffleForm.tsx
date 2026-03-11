@@ -389,7 +389,7 @@ export function CreateRaffleForm() {
                 <Sparkles className="w-4 h-4 text-neon" />
                 Simulação de Receita
               </h4>
-              <div className="grid grid-cols-3 gap-4 text-center">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-center">
                 <div>
                   <p className="text-xs text-gray-400">Receita Total</p>
                   <p className="text-lg font-bold text-white">{formatCurrency(totalRevenue)}</p>
@@ -496,7 +496,7 @@ export function CreateRaffleForm() {
               <div className="space-y-3">
                 {form.prizeTickets.map((pt, i) => (
                   <div key={i} className="flex items-start gap-3 bg-white/5 rounded-xl p-3">
-                    <div className="flex-1 grid grid-cols-3 gap-2">
+                    <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-2">
                       <input
                         type="number"
                         value={pt.number}
@@ -562,7 +562,7 @@ export function CreateRaffleForm() {
               <div className="space-y-3">
                 {form.promotions.map((promo, i) => (
                   <div key={i} className="flex items-start gap-3 bg-white/5 rounded-xl p-3">
-                    <div className="flex-1 grid grid-cols-3 gap-2">
+                    <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-2">
                       <div>
                         <p className="text-xs text-gray-400 mb-1">Compre</p>
                         <input
@@ -585,7 +585,7 @@ export function CreateRaffleForm() {
                           min="1"
                         />
                       </div>
-                      <div>
+                      <div className="col-span-2 sm:col-span-1">
                         <p className="text-xs text-gray-400 mb-1">Label (opcional)</p>
                         <input
                           type="text"

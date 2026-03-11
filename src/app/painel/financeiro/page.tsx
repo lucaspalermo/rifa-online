@@ -113,9 +113,9 @@ export default async function FinanceiroPage() {
               return (
                 <div
                   key={t.id}
-                  className="glass rounded-xl p-4 flex items-center gap-4"
+                  className="glass rounded-xl p-3 sm:p-4 flex items-center gap-3"
                 >
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${config.color}`}>
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${config.color}`}>
                     <StatusIcon className="w-4 h-4" />
                   </div>
 
@@ -134,7 +134,7 @@ export default async function FinanceiroPage() {
                     </p>
                   </div>
 
-                  <div className="text-right">
+                  <div className="text-right flex-shrink-0">
                     <p className="text-sm font-bold text-white">{formatCurrency(t.amount)}</p>
                     <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${config.color}`}>
                       {config.label}

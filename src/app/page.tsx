@@ -141,26 +141,26 @@ export default function HomePage() {
             </div>
 
             {/* Social proof */}
-            <div className="mt-12 flex items-center justify-center gap-8 sm:gap-12 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+            <div className="mt-12 grid grid-cols-2 sm:flex sm:items-center sm:justify-center gap-6 sm:gap-12 animate-slide-up" style={{ animationDelay: '0.4s' }}>
               <div className="text-center">
-                <p className="text-3xl sm:text-4xl font-black neon-text">50K+</p>
+                <p className="text-2xl sm:text-4xl font-black neon-text">50K+</p>
                 <p className="text-xs text-gray-200 mt-1">Rifas Criadas</p>
               </div>
-              <div className="w-px h-10 bg-white/10" />
+              <div className="hidden sm:block w-px h-10 bg-white/10" />
               <div className="text-center">
-                <p className="text-3xl sm:text-4xl font-black text-white">R$ 10M+</p>
+                <p className="text-2xl sm:text-4xl font-black text-white">R$ 10M+</p>
                 <p className="text-xs text-gray-200 mt-1">Arrecadados</p>
               </div>
-              <div className="w-px h-10 bg-white/10" />
+              <div className="hidden sm:block w-px h-10 bg-white/10" />
               <div className="text-center">
-                <p className="text-3xl sm:text-4xl font-black text-white">200K+</p>
+                <p className="text-2xl sm:text-4xl font-black text-white">200K+</p>
                 <p className="text-xs text-gray-200 mt-1">Participantes</p>
               </div>
-              <div className="w-px h-10 bg-white/10" />
+              <div className="hidden sm:block w-px h-10 bg-white/10" />
               <div className="text-center flex flex-col items-center">
                 <div className="flex items-center gap-0.5">
                   {[1,2,3,4,5].map(i => (
-                    <Star key={i} className="w-5 h-5 text-gold fill-gold" />
+                    <Star key={i} className="w-4 sm:w-5 h-4 sm:h-5 text-gold fill-gold" />
                   ))}
                 </div>
                 <p className="text-xs text-gray-200 mt-1">4.9/5 Avaliação</p>
@@ -176,10 +176,10 @@ export default function HomePage() {
       {/* ============ PRÊMIOS EM DESTAQUE ============ */}
       <section className="relative py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-12">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-12">
             <div>
               <span className="text-neon text-sm font-semibold tracking-widest uppercase">Ao vivo agora</span>
-              <h2 className="text-3xl sm:text-5xl font-black text-white mt-2">
+              <h2 className="text-2xl sm:text-5xl font-black text-white mt-2">
                 Rifas em <span className="gradient-text">Destaque</span>
               </h2>
             </div>
@@ -441,7 +441,7 @@ export default function HomePage() {
             Criar Minha Rifa Grátis
             <ArrowRight className="w-5 h-5" />
           </Link>
-          <p className="mt-4 text-sm text-gray-300 flex items-center justify-center gap-4">
+          <p className="mt-4 text-sm text-gray-300 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
             <span className="flex items-center gap-1.5"><Users className="w-4 h-4 text-neon" /> 50.000+ rifas criadas</span>
             <span className="flex items-center gap-1.5"><Shield className="w-4 h-4 text-neon" /> Sorteio verificável</span>
           </p>

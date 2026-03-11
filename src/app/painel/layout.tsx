@@ -71,9 +71,23 @@ export default async function PainelLayout({
       </aside>
 
       {/* Conteúdo */}
-      <main className="flex-1 p-6 lg:p-8 overflow-auto">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 pb-20 md:pb-8 overflow-auto">
         {children}
       </main>
+
+      {/* Mobile bottom nav */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 glass-strong border-t border-white/10 flex items-center justify-around px-1 py-2" style={{ paddingBottom: 'env(safe-area-inset-bottom, 8px)' }}>
+        {sidebarLinks.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className="flex flex-col items-center gap-0.5 px-2 py-1 text-gray-400 hover:text-neon transition-colors min-w-0"
+          >
+            <link.icon className="w-5 h-5" />
+            <span className="text-[10px] font-medium truncate max-w-[60px]">{link.label}</span>
+          </Link>
+        ))}
+      </nav>
     </div>
   )
 }

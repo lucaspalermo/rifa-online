@@ -41,9 +41,9 @@ export default async function PainelPage() {
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       {/* Cabeçalho */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white">
+          <h1 className="text-xl sm:text-2xl font-extrabold text-white">
             Olá, {user.name.split(' ')[0]}!
           </h1>
           <p className="text-gray-400 text-sm mt-1">
@@ -52,7 +52,7 @@ export default async function PainelPage() {
         </div>
         <Link
           href="/criar-rifa"
-          className="inline-flex items-center gap-2 btn-neon px-4 py-2.5 rounded-xl text-sm font-medium"
+          className="inline-flex items-center justify-center gap-2 btn-neon px-4 py-2.5 rounded-xl text-sm font-medium w-full sm:w-auto"
         >
           <PlusCircle className="w-4 h-4" />
           Nova Rifa

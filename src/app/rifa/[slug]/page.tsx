@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { Shield, Clock, Users, Share2, CheckCircle2, Zap, Star, TrendingUp } from 'lucide-react'
 import { NoFeesBadge } from '@/components/rifa/NoFeesBadge'
 import { Breadcrumb } from '@/components/seo/Breadcrumb'
@@ -7,27 +8,27 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { getRaffleJsonLd } from '@/lib/seo'
 import { formatCurrency, calculateProgress } from '@/lib/utils'
 import { TicketSelector } from '@/components/rifa/TicketSelector'
+import { prisma } from '@/lib/prisma'
 
-function getMockRaffle(slug: string) {
+async function getRaffle(slug: string) {
+  const raffle = await prisma.raffle.findUnique({
+    where: { slug },
+    include: {
+      creator: {
+        select: { name: true, verified: true },
+      },
+      tickets: {
+        where: { status: { in: ['paid', 'reserved'] } },
+        select: { id: true },
+      },
+    },
+  })
+
+  if (!raffle) return null
+
   return {
-    slug,
-    title: 'Rifa do iPhone 15 Pro Max 256GB',
-    description:
-      'Concorra a um iPhone 15 Pro Max 256GB novinho, na caixa lacrada! Sorteio transparente com hash verificável. Aproveite essa oportunidade incrível por apenas R$ 10 o número.',
-    prizeTitle: 'iPhone 15 Pro Max 256GB - Titânio Natural',
-    prizeDescription:
-      'iPhone 15 Pro Max 256GB na cor Titânio Natural, novo, na caixa lacrada com nota fiscal. Chip A17 Pro, câmera de 48MP, tela Super Retina XDR de 6.7 polegadas.',
-    prizeValue: 9499,
-    prizeImageUrl: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80',
-    ticketPrice: 10,
-    totalTickets: 500,
-    soldTickets: 237,
-    status: 'active',
-    endDate: '2026-03-15T20:00:00',
-    creator: { name: 'João Silva', verified: true },
-    rules:
-      'O sorteio será realizado na data marcada através do sistema verificável do RifaFlow. O ganhador será notificado por email e WhatsApp. O prêmio será enviado em até 7 dias úteis via Sedex.',
-    createdAt: '2026-02-20',
+    ...raffle,
+    soldTickets: raffle.tickets.length,
   }
 }
 
@@ -37,11 +38,15 @@ interface RafflePageProps {
 
 export async function generateMetadata({ params }: RafflePageProps): Promise<Metadata> {
   const { slug } = await params
-  const raffle = getMockRaffle(slug)
+  const raffle = await getRaffle(slug)
+
+  if (!raffle) {
+    return { title: 'Rifa não encontrada' }
+  }
 
   return {
-    title: `${raffle.title} - Compre Números`,
-    description: raffle.description,
+    title: `${raffle.metaTitle || raffle.title} - Compre Números`,
+    description: raffle.metaDescription || raffle.description,
     alternates: { canonical: `/rifa/${slug}` },
     openGraph: {
       title: raffle.title,
@@ -57,7 +62,12 @@ export async function generateMetadata({ params }: RafflePageProps): Promise<Met
 
 export default async function RaffleDetailPage({ params }: RafflePageProps) {
   const { slug } = await params
-  const raffle = getMockRaffle(slug)
+  const raffle = await getRaffle(slug)
+
+  if (!raffle) {
+    notFound()
+  }
+
   const progress = calculateProgress(raffle.soldTickets, raffle.totalTickets)
   const availableTickets = raffle.totalTickets - raffle.soldTickets
   const isHot = progress >= 70
@@ -67,8 +77,8 @@ export default async function RaffleDetailPage({ params }: RafflePageProps) {
       <JsonLd
         data={getRaffleJsonLd({
           ...raffle,
-          startDate: raffle.createdAt,
-          endDate: raffle.endDate,
+          startDate: raffle.startDate?.toISOString() || raffle.createdAt.toISOString(),
+          endDate: raffle.endDate?.toISOString() || '',
           creator: raffle.creator,
         })}
       />
@@ -112,9 +122,11 @@ export default async function RaffleDetailPage({ params }: RafflePageProps) {
                       <TrendingUp className="w-3.5 h-3.5" /> HOT
                     </span>
                   )}
-                  <span className="flex items-center gap-1 bg-neon/90 backdrop-blur-sm text-bg text-xs font-bold px-3 py-1.5 rounded-full">
-                    <Zap className="w-3.5 h-3.5" /> AO VIVO
-                  </span>
+                  {raffle.status === 'active' && (
+                    <span className="flex items-center gap-1 bg-neon/90 backdrop-blur-sm text-bg text-xs font-bold px-3 py-1.5 rounded-full">
+                      <Zap className="w-3.5 h-3.5" /> AO VIVO
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -132,16 +144,18 @@ export default async function RaffleDetailPage({ params }: RafflePageProps) {
                       <CheckCircle2 className="w-4 h-4 text-neon" />
                     )}
                   </span>
-                  <span className="flex items-center gap-1.5">
-                    <Clock className="w-4 h-4" />
-                    Sorteio: {new Date(raffle.endDate).toLocaleDateString('pt-BR', {
-                      day: 'numeric',
-                      month: 'long',
-                      year: 'numeric',
-                      hour: '2-digit',
-                      minute: '2-digit',
-                    })}
-                  </span>
+                  {raffle.endDate && (
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="w-4 h-4" />
+                      Sorteio: {new Date(raffle.endDate).toLocaleDateString('pt-BR', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -152,9 +166,11 @@ export default async function RaffleDetailPage({ params }: RafflePageProps) {
                   Sobre o Prêmio
                 </h2>
                 <h3 className="font-semibold text-neon">{raffle.prizeTitle}</h3>
-                <p className="mt-2 text-gray-300 text-sm leading-relaxed">
-                  {raffle.prizeDescription}
-                </p>
+                {raffle.prizeDescription && (
+                  <p className="mt-2 text-gray-300 text-sm leading-relaxed">
+                    {raffle.prizeDescription}
+                  </p>
+                )}
                 <p className="mt-3 text-sm text-gray-400">
                   Valor estimado: <strong className="text-white">{formatCurrency(raffle.prizeValue)}</strong>
                 </p>

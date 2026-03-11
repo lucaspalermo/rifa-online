@@ -1,7 +1,18 @@
 // Integração com Asaas para pagamento PIX
 // Docs: https://docs.asaas.com/reference
 
-const ASAAS_API_KEY = process.env.ASAAS_API_KEY || ''
+import { readFileSync } from 'fs'
+
+function getAsaasApiKey(): string {
+  // Tentar ler de arquivo separado primeiro (evita problema com $ no .env)
+  try {
+    return readFileSync('/var/www/rifa-online/.asaas-key', 'utf8').trim()
+  } catch {
+    return process.env.ASAAS_API_KEY || ''
+  }
+}
+
+const ASAAS_API_KEY = getAsaasApiKey()
 const ASAAS_BASE_URL = process.env.ASAAS_SANDBOX === 'true'
   ? 'https://sandbox.asaas.com/api/v3'
   : 'https://www.asaas.com/api/v3'

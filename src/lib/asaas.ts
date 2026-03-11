@@ -3,16 +3,19 @@
 
 import { readFileSync } from 'fs'
 
+let _cachedKey: string | null = null
+
 function getAsaasApiKey(): string {
-  // Tentar ler de arquivo separado primeiro (evita problema com $ no .env)
+  if (_cachedKey !== null) return _cachedKey
+  // Ler de arquivo separado (evita problema com $ no dotenv do Next.js)
   try {
-    return readFileSync('/var/www/rifa-online/.asaas-key', 'utf8').trim()
+    _cachedKey = readFileSync('/var/www/rifa-online/.asaas-key', 'utf8').trim()
   } catch {
-    return process.env.ASAAS_API_KEY || ''
+    _cachedKey = process.env.ASAAS_API_KEY || ''
   }
+  return _cachedKey
 }
 
-const ASAAS_API_KEY = getAsaasApiKey()
 const ASAAS_BASE_URL = process.env.ASAAS_SANDBOX === 'true'
   ? 'https://sandbox.asaas.com/api/v3'
   : 'https://www.asaas.com/api/v3'
@@ -44,7 +47,7 @@ async function asaasFetch(endpoint: string, options: RequestInit = {}) {
     ...options,
     headers: {
       'Content-Type': 'application/json',
-      'access_token': ASAAS_API_KEY,
+      'access_token': getAsaasApiKey(),
       ...options.headers,
     },
   })

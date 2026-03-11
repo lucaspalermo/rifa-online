@@ -87,23 +87,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Se o banco não estiver disponível, ignora
   }
 
-  // Posts do blog
-  let blogPages: MetadataRoute.Sitemap = []
-  try {
-    const posts = await prisma.blogPost.findMany({
-      where: { published: true },
-      select: { slug: true, updatedAt: true },
-      orderBy: { updatedAt: 'desc' },
-    })
-    blogPages = posts.map((post) => ({
-      url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: post.updatedAt,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    }))
-  } catch {
-    // Se o banco não estiver disponível, ignora
-  }
+  // Posts do blog (hardcoded slugs)
+  const blogSlugs = [
+    'melhor-plataforma-rifa-online',
+    'rifa-online-gratis',
+    'como-fazer-sorteio-rifa',
+    'como-criar-rifa-online',
+    'rifa-e-legal',
+    'dicas-vender-rifa',
+    'melhores-premios-rifa',
+    'como-divulgar-rifa-online',
+    'sorteio-transparente-blockchain',
+  ]
+  const blogPages: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
+    url: `${baseUrl}/blog/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }))
 
   return [...staticPages, ...rafflePages, ...blogPages]
 }

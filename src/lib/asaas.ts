@@ -4,7 +4,7 @@
 const ASAAS_API_KEY = process.env.ASAAS_API_KEY || ''
 const ASAAS_BASE_URL = process.env.ASAAS_SANDBOX === 'true'
   ? 'https://sandbox.asaas.com/api/v3'
-  : 'https://api.asaas.com/api/v3'
+  : 'https://www.asaas.com/api/v3'
 
 interface AsaasCustomer {
   name: string
@@ -38,11 +38,18 @@ async function asaasFetch(endpoint: string, options: RequestInit = {}) {
     },
   })
 
-  const data = await response.json()
+  const text = await response.text()
+  let data
+  try {
+    data = text ? JSON.parse(text) : {}
+  } catch {
+    console.error('Asaas response not JSON:', response.status, text.substring(0, 200))
+    throw new Error(`Asaas retornou resposta inválida (HTTP ${response.status})`)
+  }
 
   if (!response.ok) {
-    console.error('Asaas API error:', data)
-    throw new Error(data.errors?.[0]?.description || 'Erro na API do Asaas')
+    console.error('Asaas API error:', response.status, data)
+    throw new Error(data.errors?.[0]?.description || `Erro na API do Asaas (HTTP ${response.status})`)
   }
 
   return data

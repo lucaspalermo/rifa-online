@@ -1,15 +1,15 @@
 // Integração com Asaas para pagamento PIX
 // Docs: https://docs.asaas.com/reference
 
-import { readFileSync } from 'fs'
-
 let _cachedKey: string | null = null
 
 function getAsaasApiKey(): string {
   if (_cachedKey !== null) return _cachedKey
   // Ler de arquivo separado (evita problema com $ no dotenv do Next.js)
   try {
-    _cachedKey = readFileSync('/var/www/rifa-online/.asaas-key', 'utf8').trim()
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const fs = require('fs')
+    _cachedKey = fs.readFileSync('/var/www/rifa-online/.asaas-key', 'utf8').trim()
   } catch {
     _cachedKey = process.env.ASAAS_API_KEY || ''
   }

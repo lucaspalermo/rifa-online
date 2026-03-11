@@ -1,11 +1,10 @@
 // Integração com Asaas para pagamento PIX
 // Docs: https://docs.asaas.com/reference
 
-let _cachedKey: string | null = null
+let _cachedKey = ''
 
 function getAsaasApiKey(): string {
-  if (_cachedKey !== null) return _cachedKey
-  // Ler de arquivo separado (evita problema com $ no dotenv do Next.js)
+  if (_cachedKey) return _cachedKey
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const fs = require('fs')

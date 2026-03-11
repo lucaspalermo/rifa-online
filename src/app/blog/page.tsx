@@ -17,6 +17,33 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    slug: 'melhor-plataforma-rifa-online',
+    title: 'Melhor Plataforma de Rifa Online em 2026: Comparativo Completo',
+    excerpt:
+      'Compare as melhores plataformas de rifa online do Brasil. Análise de taxas, funcionalidades, segurança, PIX automático e facilidade de uso.',
+    category: 'Guia',
+    readTime: '11 min',
+    date: '2026-03-10',
+  },
+  {
+    slug: 'rifa-online-gratis',
+    title: 'Rifa Online Grátis: Como Criar Sem Pagar Nada em 2026',
+    excerpt:
+      'Aprenda como criar rifa online grátis. Sem mensalidade, sem taxa de criação. Pague apenas 5% sobre vendas. Plataforma completa com PIX automático e sorteio verificável.',
+    category: 'Guia',
+    readTime: '10 min',
+    date: '2026-03-08',
+  },
+  {
+    slug: 'como-fazer-sorteio-rifa',
+    title: 'Como Fazer Sorteio de Rifa Online: Guia Completo e Seguro',
+    excerpt:
+      'Descubra como realizar o sorteio da sua rifa online de forma segura, transparente e à prova de fraude. Comparativo de métodos e passo a passo.',
+    category: 'Guia',
+    readTime: '12 min',
+    date: '2026-03-05',
+  },
+  {
     slug: 'como-criar-rifa-online',
     title: 'Como Criar uma Rifa Online: Guia Completo 2026',
     excerpt:

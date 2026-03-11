@@ -256,6 +256,284 @@ Após o sorteio, publicamos o seed original e o cálculo completo. Qualquer pess
     date: '2026-02-10',
     author: 'Equipe RifaFlow',
   },
+  'rifa-online-gratis': {
+    title: 'Rifa Online Grátis: Como Criar Sem Pagar Nada em 2026',
+    metaDescription:
+      'Aprenda como criar rifa online grátis. Sem mensalidade, sem taxa de criação. Pague apenas 5% sobre vendas. Plataforma completa com PIX automático.',
+    excerpt:
+      'Crie sua rifa online sem pagar nada. Descubra como funciona o modelo grátis com taxa apenas sobre vendas.',
+    content: `
+## É realmente grátis criar uma rifa online?
+
+Sim! No RifaFlow, **criar uma rifa online é 100% grátis**. Não existe taxa de cadastro, mensalidade ou custo para publicar. Você só paga uma taxa de 5% sobre os números efetivamente vendidos.
+
+Isso significa: se sua rifa não vender nenhum número, você não paga absolutamente nada.
+
+## Como funciona o modelo de negócio
+
+O RifaFlow opera no modelo **freemium com taxa sobre vendas**:
+
+- **Cadastro:** Grátis
+- **Criação de rifa:** Grátis
+- **Publicação:** Grátis
+- **Página personalizada:** Grátis
+- **QR Code PIX automático:** Grátis
+- **Taxa:** Apenas 5% sobre vendas confirmadas
+
+Compare com outras plataformas que cobram mensalidades de R$ 50 a R$ 200, independente de você vender ou não.
+
+## Passo a passo para criar sua rifa grátis
+
+### 1. Cadastre-se no RifaFlow
+
+Acesse rifafy.com e crie sua conta em 10 segundos. Só precisa de nome, email e senha.
+
+### 2. Clique em "Criar Rifa"
+
+No painel, clique no botão de nova rifa e siga o formulário:
+
+- **Título chamativo** — Ex: "Concorra a um iPhone 15 Pro Max"
+- **Descrição detalhada** — Quanto mais informação, mais confiança
+- **Fotos do prêmio** — Fotos reais em alta qualidade
+- **Preço por número** — Recomendamos entre R$ 5 e R$ 15
+- **Quantidade de números** — De 100 a 100.000
+
+### 3. Configure o sorteio
+
+Defina a data do sorteio. Nosso sistema usa **criptografia SHA-256** para garantir que o resultado é justo e verificável por qualquer pessoa.
+
+### 4. Compartilhe o link
+
+Cada rifa ganha uma página exclusiva otimizada para Google. Compartilhe o link no WhatsApp, Instagram e Facebook.
+
+### 5. Receba via PIX
+
+Os pagamentos são processados automaticamente via PIX. O dinheiro vai direto para sua conta.
+
+## Quanto posso ganhar com uma rifa online?
+
+Vamos fazer as contas:
+
+- **Rifa de iPhone** (valor R$ 8.000): 1.000 números a R$ 15 = R$ 15.000
+- Taxa RifaFlow (5%): R$ 750
+- Custo do prêmio: R$ 8.000
+- **Lucro líquido: R$ 6.250**
+
+Ou uma rifa de PIX:
+
+- **Rifa de R$ 1.000 PIX**: 200 números a R$ 10 = R$ 2.000
+- Taxa RifaFlow (5%): R$ 100
+- Prêmio: R$ 1.000
+- **Lucro líquido: R$ 900**
+
+## Vantagens de usar uma plataforma profissional
+
+Fazer rifa "na mão" (anotando em caderno, recebendo por PIX pessoal) traz problemas:
+
+- **Desconfiança** dos compradores
+- **Dificuldade** de controlar quem pagou
+- **Sem comprovação** de que o sorteio foi justo
+- **Trabalho manual** enorme
+
+Com o RifaFlow você tem:
+
+- **Página profissional** que transmite confiança
+- **PIX automático** com confirmação instantânea
+- **Painel de controle** com vendas em tempo real
+- **Sorteio criptográfico** verificável
+- **Zero trabalho manual** de controle
+
+## Dicas para sua primeira rifa grátis
+
+1. **Comece com um prêmio acessível** — R$ 500 a R$ 1.000 em PIX
+2. **Use poucos números** — 100 a 200 para vender rápido
+3. **Preço baixo** — R$ 5 a R$ 10 para atrair mais gente
+4. **Divulgue no WhatsApp** — É o canal que mais converte
+5. **Defina prazo curto** — 7 a 10 dias para criar urgência
+
+## Conclusão
+
+Criar rifa online grátis é possível e fácil com o RifaFlow. Sem investimento inicial, sem risco financeiro, e com todas as ferramentas profissionais que você precisa para vender com sucesso.
+
+**Crie sua rifa grátis agora mesmo e comece a vender hoje!**
+    `.trim(),
+    category: 'Guia',
+    readTime: '10 min',
+    date: '2026-03-08',
+    author: 'Equipe RifaFlow',
+  },
+  'como-fazer-sorteio-rifa': {
+    title: 'Como Fazer Sorteio de Rifa Online: Guia Completo e Seguro',
+    metaDescription:
+      'Aprenda como fazer sorteio de rifa online de forma justa e transparente. Métodos seguros, sorteio ao vivo e verificação criptográfica.',
+    excerpt:
+      'Descubra como realizar o sorteio da sua rifa online de forma segura, transparente e à prova de fraude.',
+    content: `
+## A importância de um sorteio justo
+
+O momento do sorteio é o mais crítico de qualquer rifa. Se os participantes não confiarem no resultado, sua reputação será prejudicada — e ninguém vai querer participar das suas próximas rifas.
+
+Por isso, **transparência no sorteio é fundamental**.
+
+## Métodos de sorteio: do pior ao melhor
+
+### Método 1: Papelzinho no pote (NÃO recomendado)
+
+O método tradicional não funciona para rifas online porque:
+- Ninguém pode verificar se todos os números estavam no pote
+- O organizador pode manipular facilmente
+- Não há registro permanente do resultado
+
+### Método 2: Gerador de números aleatórios (Básico)
+
+Sites como random.org geram números aleatórios. É melhor que papelzinho, mas:
+- O organizador pode rodar várias vezes até sair o número que quer
+- Não há prova de que rodou apenas uma vez
+
+### Método 3: Live no Instagram/YouTube (Bom)
+
+Fazer o sorteio ao vivo adiciona transparência. As pessoas veem o momento exato. Porém:
+- Ainda usa gerador sem verificação
+- Não há prova matemática do resultado
+
+### Método 4: Hash criptográfico SHA-256 (O melhor)
+
+Este é o método usado pelo **RifaFlow** e é o mais seguro que existe:
+
+1. **Antes do sorteio**: o sistema gera um seed e publica seu hash SHA-256
+2. **No momento do sorteio**: o seed é revelado e usado para calcular o vencedor
+3. **Após o sorteio**: qualquer pessoa pode verificar que o hash bate com o seed
+
+É **matematicamente impossível** fraudar este sistema.
+
+## Como funciona o sorteio no RifaFlow
+
+### Passo 1: Seed e hash
+
+Quando a rifa é criada, nosso sistema gera automaticamente um seed aleatório. O hash SHA-256 deste seed é publicado na página da rifa.
+
+### Passo 2: Dia do sorteio
+
+Na data marcada, o sistema pega o seed original, combina com a lista de participantes, calcula o número vencedor e publica o resultado.
+
+### Passo 3: Verificação
+
+Qualquer pessoa pode pegar o seed publicado, calcular o SHA-256 em qualquer site de hash, confirmar que corresponde ao publicado antes do sorteio e refazer o cálculo do vencedor.
+
+## Dicas para o dia do sorteio
+
+- **Avise com antecedência** — Poste nos stories 1 dia antes
+- **Faça live** — Mesmo com sorteio automático, a live gera engajamento
+- **Mostre a verificação** — Ensine os participantes a verificar o hash
+- **Entregue rápido** — Envie o prêmio ou faça o PIX o mais rápido possível
+- **Poste a entrega** — Vídeo do ganhador recebendo gera credibilidade para próximas rifas
+
+## Erros comuns no sorteio
+
+1. **Atrasar o sorteio** sem avisar — Destroi a confiança
+2. **Não mostrar o resultado** publicamente — Gera desconfiança
+3. **Demorar para entregar** o prêmio — Prejudica sua reputação
+4. **Não ter prova** do sorteio — Sem verificação, ninguém confia
+
+## Conclusão
+
+Um sorteio transparente e verificável é o que separa uma rifa profissional de uma amadora. Use o RifaFlow para garantir que seu sorteio seja à prova de fraude.
+
+**Crie sua rifa com sorteio verificável agora!**
+    `.trim(),
+    category: 'Guia',
+    readTime: '12 min',
+    date: '2026-03-05',
+    author: 'Equipe RifaFlow',
+  },
+  'melhor-plataforma-rifa-online': {
+    title: 'Melhor Plataforma de Rifa Online em 2026: Comparativo Completo',
+    metaDescription:
+      'Compare as melhores plataformas de rifa online em 2026. Análise de taxas, funcionalidades, segurança e facilidade de uso.',
+    excerpt:
+      'Comparamos as principais plataformas de rifa online do Brasil para você escolher a melhor opção.',
+    content: `
+## Por que escolher a plataforma certa importa
+
+A plataforma de rifa que você usa afeta diretamente a **confiança** dos compradores, a **facilidade** de gerenciamento, o **custo** final e a **segurança** do sorteio.
+
+## O que avaliar numa plataforma de rifa
+
+### 1. Taxa e modelo de cobrança
+
+- **Taxa sobre vendas** (melhor para iniciantes) — Você só paga quando vende. Zero risco.
+- **Mensalidade fixa** — Paga todo mês, vendendo ou não. Ruim para quem está começando.
+- **Taxa + mensalidade** — O pior dos mundos.
+
+### 2. Pagamento automatizado
+
+A plataforma deve gerar **PIX automático** com QR Code. Se o comprador precisar fazer transferência manual e enviar comprovante, você vai perder muitas vendas.
+
+### 3. Sorteio verificável
+
+Sorteio com hash criptográfico é essencial para credibilidade. Se a plataforma usa apenas "número aleatório", não há como provar que não foi manipulado.
+
+### 4. Página da rifa
+
+A página precisa ser profissional, rápida e otimizada para celular. Mais de 80% dos compradores acessam pelo smartphone.
+
+### 5. Painel de controle
+
+Você precisa ver em tempo real: números vendidos, pagamentos confirmados, dados dos compradores e receita.
+
+### 6. SEO e divulgação
+
+A plataforma deve ter páginas otimizadas para Google, para que pessoas encontrem sua rifa pesquisando.
+
+## Comparativo de taxas
+
+O RifaFlow cobra apenas **5% sobre vendas** e zero mensalidade. Outras plataformas cobram de 8% a 10% sobre vendas, e algumas ainda cobram mensalidade de R$ 49 a R$ 99.
+
+## Funcionalidades exclusivas do RifaFlow
+
+### PIX instantâneo via Asaas
+
+Integração direta com o Asaas. O comprador escaneia o QR Code e o pagamento é confirmado em segundos — sem enviar comprovante, sem esperar aprovação manual.
+
+### Sorteio com criptografia SHA-256
+
+Somos a única plataforma que usa **hash criptográfico verificável**. O hash é publicado antes do sorteio, e qualquer pessoa pode auditar o resultado depois.
+
+### Zero taxa para o comprador
+
+Em outras plataformas, o comprador paga uma taxa extra. No RifaFlow, o preço do número é o preço final. Isso aumenta a confiança e a conversão.
+
+### Promoções inteligentes
+
+Configure promoções como "Compre 10 números e ganhe 2 bônus" automaticamente. O sistema seleciona números bônus aleatórios.
+
+### Bilhetes premiados
+
+Defina números secretos que ganham prêmios extras. Os compradores sabem que existem, mas não sabem quais são — incentivando a compra de mais números.
+
+### Ranking de compradores
+
+Mostre quem mais comprou e defina prêmios para os top compradores. Cria competição e aumenta vendas.
+
+### SEO que rankeia no Google
+
+Cada rifa tem página otimizada com meta tags, schema markup, sitemap e URLs amigáveis. Seus compradores podem encontrar sua rifa pesquisando no Google.
+
+## Quando NÃO usar uma plataforma
+
+Se você vai fazer uma rifa pequena entre amigos (10-20 pessoas), pode ser mais simples usar WhatsApp + PIX manual. Mas a partir de 50+ números, o controle manual vira caos.
+
+## Conclusão
+
+A melhor plataforma de rifa online em 2026 é aquela que combina: **taxa justa, PIX automático, sorteio verificável e ferramentas de marketing**. O RifaFlow oferece tudo isso com taxa de apenas 5% e zero mensalidade.
+
+**Teste grátis agora e veja a diferença!**
+    `.trim(),
+    category: 'Guia',
+    readTime: '11 min',
+    date: '2026-03-10',
+    author: 'Equipe RifaFlow',
+  },
   'dicas-vender-rifa': {
     title: '15 Dicas Infalíveis Para Vender Sua Rifa Online Rápido',
     metaDescription:
